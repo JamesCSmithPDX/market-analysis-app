@@ -1,0 +1,15 @@
+h1 {
+  font-family: Covered By Your Grace;
+}
+
+#image {
+  display: flex;
+}
+
+p {
+font-family: Anton;
+}
+
+.hide {
+  display: none;
+}
