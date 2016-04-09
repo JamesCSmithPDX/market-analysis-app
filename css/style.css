@@ -9,13 +9,23 @@ h1 {
 #img > img {
   width: 300px;
   height: 300px;
-  margin-left: 20px;
+  margin-left: 30px;
+  border: 2px solid blue;
 }
 
 p {
 font-family: Anton;
+text-align: center;
+}
+
+form {
+  text-align: center;
 }
 
 .hide {
+  display: none;
+}
+
+#begin {
   display: none;
 }

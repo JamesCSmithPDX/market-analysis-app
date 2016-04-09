@@ -10,7 +10,6 @@ console.log(imageArray[0].fileSrc);
 imageArray.push(new prodImage("img/banana.jpg", "Banana"));
 imageArray.push(new prodImage("img/boots.jpg", "Boots"));
 imageArray.push(new prodImage("img/chair.jpg", "Chair"));
-imageArray.push(new prodImage("img/chair.jpg", "Chair"));
 imageArray.push(new prodImage("img/cthulhu.jpg", "Cthulhu"));
 imageArray.push(new prodImage("img/dragon.jpg", "Dragon"));
 imageArray.push(new prodImage("img/pen.jpg", "Pen"));
@@ -29,6 +28,7 @@ btn.addEventListener("click", function() {
     console.log("click");
     document.getElementById('intro').className = "hide";
     document.getElementsByTagName('form')[0].className = "hide";
+    document.getElementById('begin').style.display = "inline";
     var textNode = document.createTextNode(this.form.name.value + ", click on the image you like best.");
     document.getElementById('username').appendChild(textNode);
 });
@@ -38,37 +38,43 @@ var testArray = new Array();
 
 var btn2 = document.getElementById("begin");
 btn2.addEventListener("click", getRandomNum);
-document.getElementById('intro').className = "hide";
+
 
 
 function getRandomNum() {
+    // document.getElementById('begin').style.display = "none";
     randomArray = [];
     console.log(typeof testArray);
-    console.log(testArray[0]);
+    console.log(testArray[0], testArray[1], testArray[2]);
     for (var i = 0; i < 3; i++) {
         var randomImage = Math.floor(Math.random() * (imageArray.length));
         var imageChoice = imageArray[randomImage];
-        if (testArray[0] == 'undefined') {
+        console.log(imageChoice.name);
+        if (testArray[0] == 'undefined' || testArray[1] == 'undefined' || testArray[2] == 'undefined') {
             console.log("empty array");
             createImageArray();
         } else if (imageChoice == testArray[0] || imageChoice == testArray[1] || imageChoice == testArray[2]) {
-            i--;
+            console.log(imageChoice == testArray[0], imageChoice == testArray[1], imageChoice == testArray[2]);
+            i -= 1;
+            continue;
         } else {
             createImageArray();
         }
+
+
+        function createImageArray() {
+            var imgPick = imageChoice.fileSrc
+            randomArray.push(imageChoice);
+            imageArray.splice(randomImage, 1);
+            console.log(imgPick);
+        };
     };
-
-    function createImageArray() {
-        var imgPick = imageChoice.fileSrc
-        randomArray.push(imageChoice);
-        imageArray.splice(randomImage, 1);
-        console.log(imgPick);
-    }
-
     testArray.splice(0, 3, randomArray[0], randomArray[1], randomArray[2]);
     displayImage(randomArray);
     imageArray = imageArray.concat(randomArray)
+
 };
+
 
 
 function displayImage(randomArray) {
