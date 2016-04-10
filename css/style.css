@@ -1,31 +1,77 @@
+header {
+    height: 200px;
+    background-color: #493267;
+}
 h1 {
-  font-family: Covered By Your Grace;
+    font-family: Covered By Your Grace;
+    text-align: center;
+    font-size: 300%;
+    margin: 0;
+    color: #9e379f;
 }
-
+section {
+    background-color: #373854;
+}
+header > h2 {
+    font-family: Covered By Your Grace;
+    text-align: center;
+    color: #9e379f;
+}
+body {
+    background-color: #e86af0;
+}
+#intro {
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 10px;
+    background-color: #9e379f;
+    padding: 5px;
+    width: 40%;
+    color: #7bb3ff;
+}
+#testName {
+    background-color: #493267;
+    color: white;
+    padding: 5px;
+}
+#user {
+    font-family: Verdana;
+    color: white;
+    background-color: #7bb3ff;
+}
 #img {
-  text-align: center;
+    text-align: center;
 }
-
+#img > h2 {
+    margin: : 0;
+    background-color: #e86af0;
+}
 #img > img {
-  width: 300px;
-  height: 300px;
-  margin-left: 30px;
-  border: 2px solid blue;
+    width: 300px;
+    height: 300px;
+    margin-left: 30px;
+    border: 2px solid #373854;
+    background-color: #e86af0;
 }
-
+#username {
+    margin: 0 0 30px 0;
+}
 p {
-font-family: Anton;
-text-align: center;
+    border: 0;
+    font-family: Anton;
+    text-align: center;
+    background-color: #e86af0;
 }
-
 form {
-  text-align: center;
+    display: inline-block;
+    text-align: center;
 }
-
+#hide {
+    display: none;
+}
 .hide {
-  display: none;
+    display: none;
 }
-
 #begin {
-  display: none;
+    display: none;
 }

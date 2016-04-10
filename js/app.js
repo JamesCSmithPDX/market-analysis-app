@@ -1,9 +1,8 @@
 var prodImage = function(fileSrc, name) {
     this.fileSrc = fileSrc;
     this.name = name;
-    this.voteTotal = 0;
-    this.lable = name;
-    this.y = this.voteTotal;
+    this.label = name;
+    this.y = 0;
 };
 
 var imageArray = new Array();
@@ -24,9 +23,16 @@ imageArray.push(new prodImage("img/wine_glass.jpg", "Wine Glass"));
 
 var userName = "";
 
+var availablePhotos = new Array();
+for (var index = 0; index < imageArray.length; index++) {
+    availablePhotos.push(imageArray[index]);
+}
+console.log(availablePhotos);
+
+
 var btn = document.getElementById("testName");
 btn.addEventListener("click", function() {
-    document.getElementById('intro').className = "hide";
+    document.getElementById('intro').id = "hide";
     document.getElementsByTagName('form')[0].className = "hide";
     userName = this.form.name.value;
     var textNode = document.createTextNode(userName + ", click on the image you like best.");
@@ -43,10 +49,10 @@ function getRandomNum() {
     // document.getElementById('begin').style.display = "none";
     randomArray = [];
     for (var i = 0; i < 3; i++) {
-        var randomImage = Math.floor(Math.random() * (imageArray.length));
-        var imageChoice = imageArray[randomImage];
+        var randomImage = Math.floor(Math.random() * (availablePhotos.length));
+        var imageChoice = availablePhotos[randomImage];
         if (testArray[0] == 'undefined' || testArray[1] == 'undefined' || testArray[2] == 'undefined') {
-          createImageArray();
+            createImageArray();
         } else if (imageChoice == testArray[0] || imageChoice == testArray[1] || imageChoice == testArray[2]) {
             i -= 1;
             continue;
@@ -58,13 +64,12 @@ function getRandomNum() {
         function createImageArray() {
             var imgPick = imageChoice.fileSrc
             randomArray.push(imageChoice);
-            imageArray.splice(randomImage, 1);
-          };
+            availablePhotos.splice(randomImage, 1);
         };
+    };
+    availablePhotos = availablePhotos.concat(randomArray)
     testArray.splice(0, 3, randomArray[0], randomArray[1], randomArray[2]);
     displayImage(randomArray);
-    imageArray = imageArray.concat(randomArray)
-
 };
 
 function displayImage(randomArray) {
@@ -81,36 +86,52 @@ totalClicks = 0;
 
 function countVote() {
     console.log("Image Clicked:" + event.target.id);
-    for(var photoIndex = 0; photoIndex < imageArray.length; photoIndex++) {
-      if(imageArray[photoIndex].name == event.target.id) {
-        imageArray[photoIndex].voteTotal++;
-        console.log(imageArray[photoIndex].voteTotal);
-        break;
-      }
+    for (var photoIndex = 0; photoIndex < imageArray.length; photoIndex++) {
+        if (imageArray[photoIndex].name == event.target.id) {
+            imageArray[photoIndex].y++;
+            console.log(imageArray[photoIndex].y);
+            break;
+        }
     }
     totalClicks++
     if (totalClicks < 15) {
-    getRandomNum();
-  } else {
-    document.getElementById('username').className = "hide";
-    document.getElementById("img").innerHTML = "";
-    var voteEl = document.getElementById("img");
-    voteEl.innerHTML += userName + " you reached " + totalClicks + " votes!";
-    chart.render();
-  }
+        getRandomNum();
+    } else {
+        document.getElementById('username').className = "hide";
+        document.getElementById("img").innerHTML = "";
+        var voteEl = document.getElementById("img");
+        voteEl.innerHTML += "<h2>" + userName + " you reached " + totalClicks + " votes! </h2>";
+        chart.render();
+    }
 };
 
-window.onload = function () {
 
-  chart = new CanvasJS.Chart("chartContainer", {
-
-    title: {text: "Clicks Per Photo"},
-    data: [//array of dataSeries
-      /*** Change type "column" to "bar", "area", "line" or "pie"***/
+window.onload = function() {
+  CanvasJS.addColorSet("downTown",
+                ["#373854",
+                "#493267",
+                "#9e379f",
+                "#e86af0",
+                "#7bb3ff"
+                ]);
+    chart = new CanvasJS.Chart("chartContainer", {
+        colorSet: "downTown",
+        backgroundColor: "#e86af0",
+        theme: "theme2",
+        title: {
+            text: "Clicks Per Photo",
+            fontFamily: "Verdana",
+            color: "#373854"
+        },
+        data: [ //array of dataSeries
+            /*** Change type "column" to "bar", "area", "line" or "pie"***/
             {
-             type: "pie",
-             dataPoints: imageArray
+                type: "column",
+                dataPoints: imageArray,
+                indexLabel: "{y}",
+                indexLabelPlacement: "outside",
+                indexLabelFontColor: "#373854",
             }
-          ]
-   });
+        ]
+    });
 }
