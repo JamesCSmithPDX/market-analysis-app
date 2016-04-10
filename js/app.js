@@ -2,6 +2,8 @@ var prodImage = function(fileSrc, name) {
     this.fileSrc = fileSrc;
     this.name = name;
     this.voteTotal = 0;
+    this.lable = name;
+    this.y = this.voteTotal;
 };
 
 var imageArray = new Array();
@@ -94,10 +96,21 @@ function countVote() {
     document.getElementById("img").innerHTML = "";
     var voteEl = document.getElementById("img");
     voteEl.innerHTML += userName + " you reached " + totalClicks + " votes!";
+    chart.render();
   }
 };
 
+window.onload = function () {
 
-// for(i = 0; i < imageArray.length; i++) {
-  // console.log(imageArray[i].voteTotal);
-// }
+  chart = new CanvasJS.Chart("chartContainer", {
+
+    title: {text: "Clicks Per Photo"},
+    data: [//array of dataSeries
+      /*** Change type "column" to "bar", "area", "line" or "pie"***/
+            {
+             type: "pie",
+             dataPoints: imageArray
+            }
+          ]
+   });
+}
