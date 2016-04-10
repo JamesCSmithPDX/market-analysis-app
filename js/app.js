@@ -6,7 +6,6 @@ var prodImage = function(fileSrc, name) {
 
 var imageArray = new Array();
 imageArray.push(new prodImage("img/bag.jpg", "Bag"));
-console.log(imageArray[0].fileSrc);
 imageArray.push(new prodImage("img/banana.jpg", "Banana"));
 imageArray.push(new prodImage("img/boots.jpg", "Boots"));
 imageArray.push(new prodImage("img/chair.jpg", "Chair"));
@@ -19,67 +18,86 @@ imageArray.push(new prodImage("img/sweep.jpg", "Sweep"));
 imageArray.push(new prodImage("img/unicorn.jpg", "Unicorn"));
 imageArray.push(new prodImage("img/usb.jpg", "USB"));
 imageArray.push(new prodImage("img/water_can.jpg", "Water Can"));
-imageArray.push(new prodImage("img/wine_glass.jpg", "wine Glass"));
+imageArray.push(new prodImage("img/wine_glass.jpg", "Wine Glass"));
 
-
+var userName = "";
 
 var btn = document.getElementById("testName");
 btn.addEventListener("click", function() {
-    console.log("click");
     document.getElementById('intro').className = "hide";
     document.getElementsByTagName('form')[0].className = "hide";
-    document.getElementById('begin').style.display = "inline";
-    var textNode = document.createTextNode(this.form.name.value + ", click on the image you like best.");
+    userName = this.form.name.value;
+    var textNode = document.createTextNode(userName + ", click on the image you like best.");
     document.getElementById('username').appendChild(textNode);
+    getRandomNum();
 });
 
 var randomArray = new Array();
 var testArray = new Array();
-
-var btn2 = document.getElementById("begin");
-btn2.addEventListener("click", getRandomNum);
-
+var voteCount = 0;
 
 
 function getRandomNum() {
     // document.getElementById('begin').style.display = "none";
     randomArray = [];
-    console.log(typeof testArray);
-    console.log(testArray[0], testArray[1], testArray[2]);
     for (var i = 0; i < 3; i++) {
         var randomImage = Math.floor(Math.random() * (imageArray.length));
         var imageChoice = imageArray[randomImage];
-        console.log(imageChoice.name);
         if (testArray[0] == 'undefined' || testArray[1] == 'undefined' || testArray[2] == 'undefined') {
-            console.log("empty array");
-            createImageArray();
+          createImageArray();
         } else if (imageChoice == testArray[0] || imageChoice == testArray[1] || imageChoice == testArray[2]) {
-            console.log(imageChoice == testArray[0], imageChoice == testArray[1], imageChoice == testArray[2]);
             i -= 1;
             continue;
         } else {
             createImageArray();
-        }
+        };
 
 
         function createImageArray() {
             var imgPick = imageChoice.fileSrc
             randomArray.push(imageChoice);
             imageArray.splice(randomImage, 1);
-            console.log(imgPick);
+          };
         };
-    };
     testArray.splice(0, 3, randomArray[0], randomArray[1], randomArray[2]);
     displayImage(randomArray);
     imageArray = imageArray.concat(randomArray)
 
 };
 
-
-
 function displayImage(randomArray) {
     document.getElementById("img").innerHTML = "";
-    for (var x = 0; x < 3; x++) {
-        document.getElementById("img").innerHTML += "<img src=\"" + randomArray[x].fileSrc + "\">";
-    }
+    for (var x = 0; x < randomArray.length; x++) {
+        var imgId = randomArray[x].name;
+        var imgEl = document.getElementById("img");
+        imgEl.innerHTML += "<img id = '" + imgId.trim() + "' src=\"" + randomArray[x].fileSrc + "\">";
+        imgEl.addEventListener("click", countVote);
+    };
 };
+
+totalClicks = 0;
+
+function countVote() {
+    console.log("Image Clicked:" + event.target.id);
+    for(var photoIndex = 0; photoIndex < imageArray.length; photoIndex++) {
+      if(imageArray[photoIndex].name == event.target.id) {
+        imageArray[photoIndex].voteTotal++;
+        console.log(imageArray[photoIndex].voteTotal);
+        break;
+      }
+    }
+    totalClicks++
+    if (totalClicks < 15) {
+    getRandomNum();
+  } else {
+    document.getElementById('username').className = "hide";
+    document.getElementById("img").innerHTML = "";
+    var voteEl = document.getElementById("img");
+    voteEl.innerHTML += userName + " you reached " + totalClicks + " votes!";
+  }
+};
+
+
+// for(i = 0; i < imageArray.length; i++) {
+  // console.log(imageArray[i].voteTotal);
+// }
