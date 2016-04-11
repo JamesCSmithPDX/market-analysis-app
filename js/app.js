@@ -3,6 +3,7 @@ var prodImage = function(fileSrc, name) {
     this.name = name;
     this.label = name;
     this.y = 0;
+    this.idName = name.replace(/\s/g, '');
 };
 
 var imageArray = new Array();
@@ -30,6 +31,7 @@ for (var index = 0; index < imageArray.length; index++) {
 console.log(availablePhotos);
 
 
+
 var btn = document.getElementById("testName");
 btn.addEventListener("click", function() {
     document.getElementById('intro').id = "hide";
@@ -46,7 +48,6 @@ var voteCount = 0;
 
 
 function getRandomNum() {
-    // document.getElementById('begin').style.display = "none";
     randomArray = [];
     for (var i = 0; i < 3; i++) {
         var randomImage = Math.floor(Math.random() * (availablePhotos.length));
@@ -75,9 +76,9 @@ function getRandomNum() {
 function displayImage(randomArray) {
     document.getElementById("img").innerHTML = "";
     for (var x = 0; x < randomArray.length; x++) {
-        var imgId = randomArray[x].name;
+        var imgId = randomArray[x].idName;
         var imgEl = document.getElementById("img");
-        imgEl.innerHTML += "<img id = '" + imgId.trim() + "' src=\"" + randomArray[x].fileSrc + "\">";
+        imgEl.innerHTML += "<img id = '" + imgId + "' src=\"" + randomArray[x].fileSrc + "\">";
         imgEl.addEventListener("click", countVote);
     };
 };
@@ -87,41 +88,46 @@ totalClicks = 0;
 function countVote() {
     console.log("Image Clicked:" + event.target.id);
     for (var photoIndex = 0; photoIndex < imageArray.length; photoIndex++) {
-        if (imageArray[photoIndex].name == event.target.id) {
+        if (imageArray[photoIndex].idName == event.target.id) {
             imageArray[photoIndex].y++;
             console.log(imageArray[photoIndex].y);
             break;
         }
     }
     totalClicks++
+
     if (totalClicks < 15) {
+        var totalClickEl = document.getElementById("count");
+        totalClickEl.innerHTML = "<p> Click #" + totalClicks + " only " + (15 - totalClicks) + " to go! </p>";
         getRandomNum();
     } else {
         document.getElementById('username').className = "hide";
+        document.getElementById('count').className = "hide";
         document.getElementById("img").innerHTML = "";
         var voteEl = document.getElementById("img");
-        voteEl.innerHTML += "<h2>" + userName + " you reached " + totalClicks + " votes! </h2>";
+        voteEl.innerHTML += "<h2>" + userName + ", you reached " + totalClicks + " votes! </h2>";
         chart.render();
     }
 };
 
 
 window.onload = function() {
-  CanvasJS.addColorSet("downTown",
-                ["#373854",
-                "#493267",
-                "#9e379f",
-                "#e86af0",
-                "#7bb3ff"
-                ]);
+    CanvasJS.addColorSet("downTown", ["#3b5998",
+        "#8b9dc3",
+        "#f7f7f7",
+        "#ffffff",
+    ]);
     chart = new CanvasJS.Chart("chartContainer", {
         colorSet: "downTown",
-        backgroundColor: "#e86af0",
+        backgroundColor: "# dfe3ee",
         theme: "theme2",
+        axisX: {
+            labelFontColor: "white",
+        },
         title: {
             text: "Clicks Per Photo",
             fontFamily: "Verdana",
-            color: "#373854"
+            fontColor: "white",
         },
         data: [ //array of dataSeries
             /*** Change type "column" to "bar", "area", "line" or "pie"***/
@@ -130,7 +136,7 @@ window.onload = function() {
                 dataPoints: imageArray,
                 indexLabel: "{y}",
                 indexLabelPlacement: "outside",
-                indexLabelFontColor: "#373854",
+                indexLabelFontColor: "white",
             }
         ]
     });

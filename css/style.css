@@ -1,70 +1,91 @@
 header {
     height: 200px;
-    background-color: #493267;
+    background-color: #3b5998;
 }
 h1 {
     font-family: Covered By Your Grace;
     text-align: center;
     font-size: 300%;
     margin: 0;
-    color: #9e379f;
+    color: white;
 }
 section {
-    background-color: #373854;
+    display: flex;
+    background-color: #f7f7f7;
+    margin: auto;
 }
 header > h2 {
-    font-family: Covered By Your Grace;
+    font-family: Roboto;
     text-align: center;
-    color: #9e379f;
+    color: white;
+    font-size: 2em;
 }
 body {
-    background-color: #e86af0;
+    background-color: #dfe3ee;
 }
 #intro {
     display: inline-block;
     margin-top: 0;
     margin-bottom: 10px;
-    background-color: #9e379f;
+    background-color: #f7f7f7;
     padding: 5px;
-    width: 40%;
-    color: #7bb3ff;
+    width: 50%;
+    color: #3b5998;
 }
 #testName {
-    background-color: #493267;
+    background-color: #8b9dc3;
     color: white;
     padding: 5px;
 }
 #user {
     font-family: Verdana;
-    color: white;
-    background-color: #7bb3ff;
+    color: #3b5998;
+    background-color: #dfe3ee;
 }
 #img {
     text-align: center;
 }
 #img > h2 {
-    margin: : 0;
-    background-color: #e86af0;
+    font-size: 2.5em;
+    font-family: Roboto;
+    margin: 0;
+    background-color: #f7f7f7;
+    color: #8b9dc3;
 }
 #img > img {
     width: 300px;
     height: 300px;
     margin-left: 30px;
-    border: 2px solid #373854;
-    background-color: #e86af0;
+    margin-top: 30px;
+    border: 2px solid #8b9dc3;
+    background-color: #f7f7f7;
 }
 #username {
+    font-size: 2em;
+    font-family: Anton;
     margin: 0 0 30px 0;
+    background-color: #f7f7f7;
+}
+section > p {
+    display: flex;
+    width: 50%;
+    font-family: Roboto;
+    font-size: 1.25em;
+    text-align: center;
+    background-color: #8b9dc3;
+}
+section > form {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    background-color: #373854;
 }
 p {
-    border: 0;
     font-family: Anton;
+    font-size: 1.25em;
     text-align: center;
-    background-color: #e86af0;
-}
-form {
-    display: inline-block;
-    text-align: center;
+    color: #3b5998;
+    margin-top: 0;
 }
 #hide {
     display: none;
