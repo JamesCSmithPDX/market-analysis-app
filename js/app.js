@@ -119,7 +119,7 @@ window.onload = function() {
     ]);
     chart = new CanvasJS.Chart("chartContainer", {
         colorSet: "downTown",
-        backgroundColor: "# dfe3ee",
+        backgroundColor: "#dfe3ee",
         theme: "theme2",
         axisX: {
             labelFontColor: "white",
