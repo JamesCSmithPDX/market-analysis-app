@@ -30,17 +30,20 @@ for (var index = 0; index < imageArray.length; index++) {
 }
 console.log(availablePhotos);
 
+function newGameUser() {
+    var btn = document.getElementById("testName");
+    btn.addEventListener("click", function() {
+        document.getElementById('intro').id = "hide";
+        document.getElementsByTagName('form')[0].className = "hide";
+        userName = this.form.name.value;
+        var textNode = document.createTextNode(userName + ", click on the image you like best.");
+        document.getElementById('username').appendChild(textNode);
+        this.form.name.value = "";
+        getRandomNum();
+    });
+};
 
-
-var btn = document.getElementById("testName");
-btn.addEventListener("click", function() {
-    document.getElementById('intro').id = "hide";
-    document.getElementsByTagName('form')[0].className = "hide";
-    userName = this.form.name.value;
-    var textNode = document.createTextNode(userName + ", click on the image you like best.");
-    document.getElementById('username').appendChild(textNode);
-    getRandomNum();
-});
+newGameUser()
 
 var randomArray = new Array();
 var testArray = new Array();
@@ -103,13 +106,14 @@ function countVote() {
     } else {
         document.getElementById('username').className = "hide";
         document.getElementById('count').className = "hide";
+        document.getElementById('reset').setAttribute("id", "newGame");
         document.getElementById("img").innerHTML = "";
         var voteEl = document.getElementById("img");
         voteEl.innerHTML += "<h2>" + userName + ", you reached " + totalClicks + " votes! </h2>";
         chart.render();
+        endOfGame();
     }
 };
-
 
 window.onload = function() {
     CanvasJS.addColorSet("downTown", ["#3b5998",
@@ -141,3 +145,19 @@ window.onload = function() {
         ]
     });
 }
+function endOfGame() {
+var btnNewGame = document.getElementById("newGame");
+btnNewGame.addEventListener("click", function() {
+    document.getElementById("img").innerHTML = "";
+    document.getElementById("chartContainer").innerHTML = "";
+    document.getElementById("chartContainer").innerHTML = "";
+    document.getElementById('hide').id = "intro";
+    document.getElementsByTagName('form')[0].className = "";
+    document.getElementById("newGame").id = "reset";
+
+    // userName = this.form.name.value;
+    // var textNode = document.createTextNode(userName + ", click on the image you like best.");
+    // document.getElementById('username').appendChild(textNode);
+    newGameUser();
+  });
+};
