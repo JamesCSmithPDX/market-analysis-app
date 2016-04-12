@@ -1,3 +1,4 @@
+// Product image object constructor
 var prodImage = function(fileSrc, name) {
     this.fileSrc = fileSrc;
     this.name = name;
@@ -6,6 +7,7 @@ var prodImage = function(fileSrc, name) {
     this.idName = name.replace(/\s/g, '');
 };
 
+// Initialize objects and create array
 var imageArray = new Array();
 imageArray.push(new prodImage("img/bag.jpg", "Bag"));
 imageArray.push(new prodImage("img/banana.jpg", "Banana"));
@@ -24,12 +26,13 @@ imageArray.push(new prodImage("img/wine_glass.jpg", "Wine Glass"));
 
 var userName = "";
 
+// Clone imageArray
 var availablePhotos = new Array();
 for (var index = 0; index < imageArray.length; index++) {
     availablePhotos.push(imageArray[index]);
 }
-console.log(availablePhotos);
 
+// Start market analysis app
 function newGameUser() {
     var btn = document.getElementById("testName");
     btn.addEventListener("click", function() {
@@ -45,34 +48,35 @@ function newGameUser() {
 
 newGameUser()
 
+
 var randomArray = new Array();
 var testArray = new Array();
 var voteCount = 0;
 
-
+// Random selection of images
 function getRandomNum() {
     randomArray = [];
     for (var i = 0; i < 3; i++) {
         var randomImage = Math.floor(Math.random() * (availablePhotos.length));
         var imageChoice = availablePhotos[randomImage];
-        if (testArray[0] == 'undefined' || testArray[1] == 'undefined' || testArray[2] == 'undefined') {
+        if (testArray[0] == 'undefined' || testArray[1] == 'undefined' || testArray[2] == 'undefined') { // First itme through run
             createImageArray();
         } else if (imageChoice == testArray[0] || imageChoice == testArray[1] || imageChoice == testArray[2]) {
-            i -= 1;
+            i -= 1; //rerun if a duplicate from previous round
             continue;
         } else {
             createImageArray();
         };
 
-
+        //get image form array; store in randomArray, splice from cloned imageArray
         function createImageArray() {
             var imgPick = imageChoice.fileSrc
             randomArray.push(imageChoice);
             availablePhotos.splice(randomImage, 1);
         };
     };
-    availablePhotos = availablePhotos.concat(randomArray)
-    testArray.splice(0, 3, randomArray[0], randomArray[1], randomArray[2]);
+    availablePhotos = availablePhotos.concat(randomArray) //add images back into array
+    testArray.splice(0, 3, randomArray[0], randomArray[1], randomArray[2]); //store images to check next round
     displayImage(randomArray);
 };
 
@@ -87,7 +91,7 @@ function displayImage(randomArray) {
 };
 
 totalClicks = 0;
-
+// count vote rounds 15
 function countVote() {
     console.log("Image Clicked:" + event.target.id);
     for (var photoIndex = 0; photoIndex < imageArray.length; photoIndex++) {
@@ -95,10 +99,10 @@ function countVote() {
             imageArray[photoIndex].y++;
             console.log(imageArray[photoIndex].y);
             break;
-        }
-    }
-    totalClicks++
-
+        };
+    };
+    totalClicks++;
+    //check rounds; tell user where they are in 15 rounds
     if (totalClicks < 15) {
         var totalClickEl = document.getElementById("count");
         totalClickEl.innerHTML = "<p> Click #" + totalClicks + " only " + (15 - totalClicks) + " to go! </p>";
@@ -112,9 +116,9 @@ function countVote() {
         voteEl.innerHTML += "<h2>" + userName + ", you reached " + totalClicks + " votes! </h2>";
         chart.render();
         endOfGame();
-    }
+    };
 };
-
+//user chart
 window.onload = function() {
     CanvasJS.addColorSet("downTown", ["#3b5998",
         "#8b9dc3",
@@ -145,19 +149,21 @@ window.onload = function() {
         ]
     });
 }
-function endOfGame() {
-var btnNewGame = document.getElementById("newGame");
-btnNewGame.addEventListener("click", function() {
-    document.getElementById("img").innerHTML = "";
-    document.getElementById("chartContainer").innerHTML = "";
-    document.getElementById("chartContainer").innerHTML = "";
-    document.getElementById('hide').id = "intro";
-    document.getElementsByTagName('form')[0].className = "";
-    document.getElementById("newGame").id = "reset";
 
-    // userName = this.form.name.value;
-    // var textNode = document.createTextNode(userName + ", click on the image you like best.");
-    // document.getElementById('username').appendChild(textNode);
-    newGameUser();
-  });
+//reset game and store votes in localStorage
+function endOfGame() {
+    var btnNewGame = document.getElementById("newGame");
+    btnNewGame.addEventListener("click", function() {
+        for (var i = 0; i < imageArray.length; i++) {
+            var name = imageArray[i].idName;
+            if (localStorage.getItem(name)) {
+                var prevClicks = parseInt(localStorage.getItem(name));
+                prevClicks += imageArray[i].y;
+                localStorage.setItem(name, prevClicks);
+            } else {
+                localStorage.setItem(name, imageArray[i].y);
+            };
+        };
+        window.location.reload();
+    });
 };
