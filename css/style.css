@@ -26,6 +26,27 @@ header > h2 {
 body {
     background-color: #dfe3ee;
 }
+p {
+    font-family: Anton;
+    font-size: 1.25em;
+    text-align: center;
+    color: #3b5998;
+    margin-top: 0;
+}
+section > p {
+    display: flex;
+    width: 50%;
+    font-family: Roboto;
+    font-size: 1.25em;
+    text-align: center;
+    background-color: #8b9dc3;
+}
+section > form {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    background-color: #373854;
+}
 #intro {
     display: inline-block;
     margin-top: 0;
@@ -69,27 +90,6 @@ body {
     margin: 0 0 30px 0;
     background-color: #f7f7f7;
 }
-section > p {
-    display: flex;
-    width: 50%;
-    font-family: Roboto;
-    font-size: 1.25em;
-    text-align: center;
-    background-color: #8b9dc3;
-}
-section > form {
-    width: 50%;
-    display: flex;
-    align-items: center;
-    background-color: #373854;
-}
-p {
-    font-family: Anton;
-    font-size: 1.25em;
-    text-align: center;
-    color: #3b5998;
-    margin-top: 0;
-}
 #hide {
     display: none;
 }
@@ -108,4 +108,56 @@ p {
   text-decoration: none;
   font-size: 16px;
   margin: 0 auto;
+}
+footer {
+  display: inline-block;
+}
+
+.main {
+    margin: 0 auto;
+    padding: 0;
+    height: 1em;
+}
+.main li {
+    display: inline-block;
+    list-style: none;
+    border-left: 1px solid #f7f7f7;
+    width: 7em;
+}
+.main li a:not(.active) {
+    display: block;
+    padding: 3px 8px;
+    background-color: #3b5998;
+    color: #373854;
+    text-decoration: none;
+}
+.active {
+    display: block;
+    padding: 3px 8px;
+    background-color: #8b9dc3;
+    color: #373854;
+    text-decoration: none;
+}
+.main li ul {
+    display: none;
+    width: 10em;
+    background-color: #373854;
+}
+.main li a:hover ul {
+    display: block;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    background-color: #8b9dc3;
+}
+.main li:hover li {
+    float: none;
+}
+.main li:hover li a {
+    background-color: #8b9dc3;
+    border-bottom: 1px solid #f7f7f7;
+    color: #f7f7f7;
+}
+.main li li a:hover {
+    background-color: #8b9dc3;
 }

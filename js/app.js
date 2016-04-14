@@ -114,7 +114,7 @@ function countVote() {
         document.getElementById("img").innerHTML = "";
         var voteEl = document.getElementById("img");
         voteEl.innerHTML += "<h2>" + userName + ", you reached " + totalClicks + " votes! </h2>";
-        chart.render();
+        userChart.render();
         endOfGame();
     };
 };
@@ -125,7 +125,7 @@ window.onload = function() {
         "#f7f7f7",
         "#ffffff",
     ]);
-    chart = new CanvasJS.Chart("chartContainer", {
+    var userChart = new CanvasJS.Chart("chartContainer", {
         colorSet: "downTown",
         backgroundColor: "#dfe3ee",
         theme: "theme2",
@@ -167,3 +167,46 @@ function endOfGame() {
         window.location.reload();
     });
 };
+mktResearchArray = [];
+function marketResearch() {
+    var btnMktResearch = document.getElementById("mktResearch");
+    btnMktResearch.addEventListener("click", function() {
+        for (var i = 0; i < imageArray.length; i++) {
+            var name = imageArray[i].idName;
+            var num = parseInt(localStorage.getItem(name));
+            mktResearchArray.push([name, num]);
+        };
+        window.location.reload();
+        mktResearchChart.render();
+    });
+};
+
+window.onload = function() {
+    CanvasJS.addColorSet("downTown", ["#3b5998",
+        "#8b9dc3",
+        "#f7f7f7",
+        "#ffffff",
+    ]);}
+    var mktResearchChart = new CanvasJS.Chart("chartContainer", {
+        colorSet: "downTown",
+        backgroundColor: "#dfe3ee",
+        theme: "theme2",
+        axisX: {
+            labelFontColor: "white",
+        },
+        title: {
+            text: "Clicks Per Photo",
+            fontFamily: "Verdana",
+            fontColor: "white",
+        },
+        data: [ //array of dataSeries
+            /*** Change type "column" to "bar", "area", "line" or "pie"***/
+            {
+                type: "column",
+                dataPoints: mktResearchArray,
+                indexLabel: "{y}",
+                indexLabelPlacement: "outside",
+                indexLabelFontColor: "white",
+            }
+        ]
+    });

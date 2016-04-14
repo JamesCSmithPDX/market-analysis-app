@@ -13,10 +13,7 @@
     <header>
         <h1>BusMall Product Tester</h1>
         <h2>Help BusMall Find Awesome Products</h2>
-        <!--TODO: Add navigation bar-->
-        <nav>
 
-        </nav>
     </header>
     <section>
         <p id="intro">
@@ -26,7 +23,7 @@
             <br /> After 15 votes, you'll see your votes.
             <br />
         </p>
-        <form>
+        <form  method="get">
             <input type="button" value="What is your name?" id="testName" />
             <input type="text" id="user" name="name" />
         </form>
@@ -45,7 +42,13 @@
     </div>
 </body>
 <footer>
-    <!--TODO: Add footer-->
+  <nav>
+    <ul class="main">
+        <li><a class="active" href="#">Product</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
 </footer>
 
 <script src="js/app.js"></script>
