@@ -143,18 +143,18 @@ footer {
     width: 10em;
     background-color: #373854;
 }
-.main li a:hover ul {
+.main li:hover ul {
     display: block;
     position: absolute;
     margin: 0;
     padding: 0;
-    background-color: #8b9dc3;
+    background-color: #373854;
 }
 .main li:hover li {
     float: none;
 }
 .main li:hover li a {
-    background-color: #8b9dc3;
+    background-color: #373854;
     border-bottom: 1px solid #f7f7f7;
     color: #f7f7f7;
 }

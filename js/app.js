@@ -42,6 +42,9 @@ function newGameUser() {
         var textNode = document.createTextNode(userName + ", click on the image you like best.");
         document.getElementById('username').appendChild(textNode);
         this.form.name.value = "";
+        if(localStorage.getItem("store") != null) {
+          imageArray = JSON.parse(localStorage.getItem("store"))
+          };
         getRandomNum();
     });
 };
@@ -101,6 +104,7 @@ function countVote() {
             break;
         };
     };
+    localStorage.setItem('store', JSON.stringify(imageArray));
     totalClicks++;
     //check rounds; tell user where they are in 15 rounds
     if (totalClicks < 15) {
@@ -114,7 +118,7 @@ function countVote() {
         document.getElementById("img").innerHTML = "";
         var voteEl = document.getElementById("img");
         voteEl.innerHTML += "<h2>" + userName + ", you reached " + totalClicks + " votes! </h2>";
-        userChart.render();
+        buildChart();
         endOfGame();
     };
 };
@@ -125,7 +129,12 @@ window.onload = function() {
         "#f7f7f7",
         "#ffffff",
     ]);
-    var userChart = new CanvasJS.Chart("chartContainer", {
+  };
+
+var chart = null;
+function buildChart() {
+
+      chart = new CanvasJS.Chart("chartContainer1", {
         colorSet: "downTown",
         backgroundColor: "#dfe3ee",
         theme: "theme2",
@@ -148,65 +157,12 @@ window.onload = function() {
             }
         ]
     });
-}
-
+    chart.render();
+  }
 //reset game and store votes in localStorage
 function endOfGame() {
-    var btnNewGame = document.getElementById("newGame");
-    btnNewGame.addEventListener("click", function() {
-        for (var i = 0; i < imageArray.length; i++) {
-            var name = imageArray[i].idName;
-            if (localStorage.getItem(name)) {
-                var prevClicks = parseInt(localStorage.getItem(name));
-                prevClicks += imageArray[i].y;
-                localStorage.setItem(name, prevClicks);
-            } else {
-                localStorage.setItem(name, imageArray[i].y);
-            };
-        };
+        var reset = document.getElementById("newGame");
+        reset.addEventListener("click", function() {
         window.location.reload();
     });
-};
-mktResearchArray = [];
-function marketResearch() {
-    var btnMktResearch = document.getElementById("mktResearch");
-    btnMktResearch.addEventListener("click", function() {
-        for (var i = 0; i < imageArray.length; i++) {
-            var name = imageArray[i].idName;
-            var num = parseInt(localStorage.getItem(name));
-            mktResearchArray.push([name, num]);
-        };
-        window.location.reload();
-        mktResearchChart.render();
-    });
-};
-
-window.onload = function() {
-    CanvasJS.addColorSet("downTown", ["#3b5998",
-        "#8b9dc3",
-        "#f7f7f7",
-        "#ffffff",
-    ]);}
-    var mktResearchChart = new CanvasJS.Chart("chartContainer", {
-        colorSet: "downTown",
-        backgroundColor: "#dfe3ee",
-        theme: "theme2",
-        axisX: {
-            labelFontColor: "white",
-        },
-        title: {
-            text: "Clicks Per Photo",
-            fontFamily: "Verdana",
-            fontColor: "white",
-        },
-        data: [ //array of dataSeries
-            /*** Change type "column" to "bar", "area", "line" or "pie"***/
-            {
-                type: "column",
-                dataPoints: mktResearchArray,
-                indexLabel: "{y}",
-                indexLabelPlacement: "outside",
-                indexLabelFontColor: "white",
-            }
-        ]
-    });
+  };
