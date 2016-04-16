@@ -1,9 +1,11 @@
 body {
   text-align: center;
+  margin: 0;
 }
 header {
     height: 200px;
     background-color: #3b5998;
+    background-size: cover;
 }
 h1 {
     font-family: Covered By Your Grace;
