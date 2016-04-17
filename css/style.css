@@ -1,7 +1,7 @@
   body {
-    text-align: center;
-    margin: 0;
-    background-color: white;
+      text-align: center;
+      margin: 0;
+      background-color: white;
   }
   header {
       height: 400px;
@@ -30,7 +30,7 @@
       color: white;
       font-size: 2em;
       margin-top: 0;
-}
+  }
   p {
       font-family: Anton;
       font-size: 1.25em;
@@ -44,8 +44,8 @@
       font-family: Anton, sans-serif;
       font-size: 1.25em;
       text-align: center;
-        background-color: #8b9dc3;
-      }
+      background-color: #8b9dc3;
+  }
   section > form {
       width: 50%;
       display: flex;
@@ -53,31 +53,29 @@
       background-color: #8b9dc3;
   }
   footer {
-    display: inline-block;
-    width: 100%;
-    height: 144px;
-    background-color: #f7f7f7;
-    position: relative;
+      display: inline-block;
+      width: 100%;
+      height: 144px;
+      background-color: #f7f7f7;
+      position: relative;
   }
-
   footer p {
-    position: absolute;
-    left: 0;
-    bottom: 12px;
-    width: 25%;
-    font-family: Roboto, sans-serif;
-    color: #3b5998;
-    font-size: 1em;
-    text-align: justify;
-    margin-left: 2%;
-}
-footer > img {
-  height: 144px;
-  width: 250px;
-  position: absolute;
-  bottom: 0;
-  right: 2%;
-}
+      position: absolute;
+      left: 2%;
+      bottom: 0;
+      width: 25%;
+      font-family: Roboto, sans-serif;
+      color: #3b5998;
+      font-size: 1em;
+      text-align: justify;
+  }
+  footer > img {
+      height: 144px;
+      width: 250px;
+      position: absolute;
+      bottom: 0;
+      right: 2%;
+  }
   #intro {
       display: inline-block;
       margin-top: 0;
@@ -100,7 +98,7 @@ footer > img {
   #img {
       height: 400px;
       text-align: center;
-      }
+  }
   #img > h2 {
       font-size: 2.5em;
       font-family: Roboto;
@@ -118,12 +116,12 @@ footer > img {
       background-color: #f7f7f7;
       opacity: 1;
       transition: all 1s;
-    }
+  }
   #img > img:hover {
-    opacity: .2;
-    transform: scale(1.1);
-    border: 2px solid #8b9dc3
-    }
+      opacity: .2;
+      transform: scale(0.95);
+      border: 2px solid #8b9dc3
+  }
   #username {
       font-size: 2em;
       font-family: Anton;
@@ -140,17 +138,17 @@ footer > img {
       display: none;
   }
   #newGame {
-    background-color: #3b5998;
-    border: none;
-    color: 	#f7f7f7;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    margin: 0 auto;
+      background-color: #3b5998;
+      border: none;
+      color: #f7f7f7;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 16px;
+      margin: 0 auto;
   }
   #chartContainer1 {
-    height: 300px;
+      height: 300px;
   }
   .main {
       margin: 0 auto;
@@ -193,5 +191,5 @@ footer > img {
       background-color: #8b9dc3;
   }
   .active a:hover {
-    transition: all 1s;
+      transition: all 1s;
   }

@@ -36,20 +36,26 @@ for (var index = 0; index < imageArray.length; index++) {
 function newGameUser() {
     var btn = document.getElementById("testName");
     btn.addEventListener("click", function() {
-        document.getElementById('intro').id = "hide";
-        document.getElementsByTagName('form')[0].className = "hide";
         userName = this.form.name.value;
-        var textNode = document.createTextNode(userName + ", click on the image you like best.");
-        document.getElementById('username').appendChild(textNode);
+        changeUserText(userName);
         this.form.name.value = "";
-        if(localStorage.getItem("store") != null) {
-          imageArray = JSON.parse(localStorage.getItem("store"))
-          };
+        if (localStorage.getItem("store") != null) {
+            imageArray = JSON.parse(localStorage.getItem("store"))
+        };
         getRandomNum();
     });
 };
 
 newGameUser()
+
+//change the HTML to show user name and
+function changeUserText(userName) {
+  document.getElementById('intro').id = "hide";
+  document.getElementsByTagName('form')[0].className = "hide";
+  var textNode = document.createTextNode(userName + ", click on the image you like best.");
+  document.getElementById('username').appendChild(textNode);
+};
+
 
 
 var randomArray = new Array();
@@ -62,7 +68,7 @@ function getRandomNum() {
     for (var i = 0; i < 3; i++) {
         var randomImage = Math.floor(Math.random() * (availablePhotos.length));
         var imageChoice = availablePhotos[randomImage];
-        if (testArray[0] == 'undefined' || testArray[1] == 'undefined' || testArray[2] == 'undefined') { // First itme through run
+        if (typeof testArray == 'undefined') { // First itme through run
             createImageArray();
         } else if (imageChoice == testArray[0] || imageChoice == testArray[1] || imageChoice == testArray[2]) {
             i -= 1; //rerun if a duplicate from previous round
@@ -112,16 +118,21 @@ function countVote() {
         totalClickEl.innerHTML = "<p> Click #" + totalClicks + " only " + (15 - totalClicks) + " to go! </p>";
         getRandomNum();
     } else {
-        document.getElementById('username').className = "hide";
-        document.getElementById('count').className = "hide";
-        document.getElementById('reset').setAttribute("id", "newGame");
-        document.getElementById("img").innerHTML = "";
-        var voteEl = document.getElementById("img");
-        voteEl.innerHTML += "<h2>" + userName + ", you reached " + totalClicks + " votes! </h2>";
+        endOfGameHTML();
         buildChart();
         endOfGame();
     };
 };
+
+function endOfGameHTML() {
+  document.getElementById('username').className = "hide";
+  document.getElementById('count').className = "hide";
+  document.getElementById('reset').setAttribute("id", "newGame");
+  document.getElementById("img").innerHTML = "";
+  var voteEl = document.getElementById("img");
+  voteEl.innerHTML += "<h2>" + userName + ", you reached " + totalClicks + " votes! </h2>";
+};
+
 //user chart
 window.onload = function() {
     CanvasJS.addColorSet("downTown", ["#3b5998",
@@ -129,12 +140,13 @@ window.onload = function() {
         "#f7f7f7",
         "#ffffff",
     ]);
-  };
+};
 
 var chart = null;
+
 function buildChart() {
-      document.getElementById("img").setAttribute("style", "height: 100px");
-      chart = new CanvasJS.Chart("chartContainer1", {
+    document.getElementById("img").setAttribute("style", "height: 100px");
+    chart = new CanvasJS.Chart("chartContainer1", {
         colorSet: "downTown",
         backgroundColor: "#dfe3ee",
         theme: "theme2",
@@ -158,11 +170,11 @@ function buildChart() {
         ]
     });
     chart.render();
-  }
+}
 //reset game and store votes in localStorage
 function endOfGame() {
-        var reset = document.getElementById("newGame");
-        reset.addEventListener("click", function() {
+    var reset = document.getElementById("newGame");
+    reset.addEventListener("click", function() {
         window.location.reload();
     });
-  };
+};

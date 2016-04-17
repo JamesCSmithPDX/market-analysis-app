@@ -16,3 +16,9 @@ User clicks on favored image Tracked user clicks
 
 ### Created Chart to Display Users Clicks
 Using CanvasJS created bar chart to display vote results    
+
+### Changed Chart to Include ALl Users Clicks
+Stored votes as stringified array in local storage. Pulled back out to create chart.
+
+### Add UX elements
+Added animations and other UX elements to page
