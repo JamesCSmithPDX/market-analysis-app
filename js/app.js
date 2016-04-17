@@ -133,7 +133,7 @@ window.onload = function() {
 
 var chart = null;
 function buildChart() {
-
+      document.getElementById("img").setAttribute("style", "height: 100px");
       chart = new CanvasJS.Chart("chartContainer1", {
         colorSet: "downTown",
         backgroundColor: "#dfe3ee",

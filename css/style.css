@@ -1,150 +1,197 @@
-body {
-  text-align: center;
-  margin: 0;
-}
-header {
-    height: 200px;
-    background-color: #3b5998;
-    background-size: cover;
-}
-h1 {
-    font-family: Covered By Your Grace;
+  body {
     text-align: center;
-    font-size: 300%;
     margin: 0;
-    color: white;
+    background-color: white;
+  }
+  header {
+      height: 400px;
+      background-image: url('../img/busmall_poster.png');
+      background-size: cover;
+      position: relative;
+  }
+  header > h1 {
+      font-family: Covered By Your Grace;
+      text-align: center;
+      font-size: 300%;
+      margin: 0;
+      background-color: #373854;
+      color: white;
+      margin-bottom: 0;
+  }
+  section {
+      display: flex;
+      background-color: #f7f7f7;
+      margin: auto;
+  }
+  header > h2 {
+      font-family: Roboto;
+      text-align: center;
+      background-color: #373854;
+      color: white;
+      font-size: 2em;
+      margin-top: 0;
 }
-section {
-    display: flex;
-    background-color: #f7f7f7;
-    margin: auto;
-}
-header > h2 {
-    font-family: Roboto;
-    text-align: center;
-    color: white;
-    font-size: 2em;
-}
-body {
-    background-color: #dfe3ee;
-}
-p {
-    font-family: Anton;
-    font-size: 1.25em;
-    text-align: center;
-    color: #3b5998;
-    margin-top: 0;
-}
-section > p {
-    display: flex;
-    width: 50%;
-    font-family: Roboto;
-    font-size: 1.25em;
-    text-align: center;
-    background-color: #8b9dc3;
-}
-section > form {
-    width: 50%;
-    display: flex;
-    align-items: center;
-    background-color: #373854;
-}
-#intro {
+  p {
+      font-family: Anton;
+      font-size: 1.25em;
+      text-align: center;
+      color: #3b5998;
+      margin-top: 0;
+  }
+  section > p {
+      display: flex;
+      width: 50%;
+      font-family: Anton, sans-serif;
+      font-size: 1.25em;
+      text-align: center;
+        background-color: #8b9dc3;
+      }
+  section > form {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      background-color: #8b9dc3;
+  }
+  footer {
     display: inline-block;
-    margin-top: 0;
-    margin-bottom: 10px;
+    width: 100%;
+    height: 144px;
     background-color: #f7f7f7;
-    padding: 5px;
-    width: 50%;
-    color: #3b5998;
-}
-#testName {
-    background-color: #8b9dc3;
-    color: white;
-    padding: 5px;
-}
-#user {
-    font-family: Verdana;
-    color: #3b5998;
-    background-color: #dfe3ee;
-}
-#img {
-    text-align: center;
-}
-#img > h2 {
-    font-size: 2.5em;
-    font-family: Roboto;
-    margin: 0;
-    background-color: #f7f7f7;
-    color: #3b5998;
-}
-#img > img {
-    width: 300px;
-    height: 300px;
-    margin-left: 30px;
-    margin-top: 30px;
-    border: 2px solid #8b9dc3;
-    background-color: #f7f7f7;
-}
-#username {
-    font-size: 2em;
-    font-family: Anton;
-    margin: 0 0 30px 0;
-    background-color: #f7f7f7;
-}
-#hide {
-    display: none;
-}
-.hide {
-    display: none;
-}
-#reset {
-    display: none;
-}
-#newGame {
-  background-color: #3b5998;
-  border: none;
-  color: 	#f7f7f7;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 16px;
-  margin: 0 auto;
-}
-footer {
-  display: inline-block;
-}
+    position: relative;
+  }
 
-.main {
-    margin: 0 auto;
-    padding: 0;
-    height: 1em;
+  footer p {
+    position: absolute;
+    left: 0;
+    bottom: 12px;
+    width: 25%;
+    font-family: Roboto, sans-serif;
+    color: #3b5998;
+    font-size: 1em;
+    text-align: justify;
+    margin-left: 2%;
 }
-.main li {
-    display: inline-block;
-    list-style: none;
-    border-left: 1px solid #f7f7f7;
-    width: 7em;
+footer > img {
+  height: 144px;
+  width: 250px;
+  position: absolute;
+  bottom: 0;
+  right: 2%;
 }
-.main li a:not(.active) {
-    display: block;
-    padding: 3px 8px;
+  #intro {
+      display: inline-block;
+      margin-top: 0;
+      margin-bottom: 10px;
+      background-color: #f7f7f7;
+      padding: 5px;
+      width: 50%;
+      color: #3b5998;
+  }
+  #testName {
+      background-color: #8b9dc3;
+      color: white;
+      padding: 5px;
+  }
+  #user {
+      font-family: Verdana;
+      color: #3b5998;
+      background-color: #dfe3ee;
+  }
+  #img {
+      height: 400px;
+      text-align: center;
+      }
+  #img > h2 {
+      font-size: 2.5em;
+      font-family: Roboto;
+      margin: 0;
+      background-color: #f7f7f7;
+      color: #3b5998;
+  }
+  #img > img {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      margin-left: 30px;
+      margin-top: 30px;
+      border: 2px solid #8b9dc3;
+      background-color: #f7f7f7;
+      opacity: 1;
+      transition: all 1s;
+    }
+  #img > img:hover {
+    opacity: .2;
+    transform: scale(1.1);
+    border: 2px solid #8b9dc3
+    }
+  #username {
+      font-size: 2em;
+      font-family: Anton;
+      margin: 0 0 30px 0;
+      background-color: #f7f7f7;
+  }
+  #hide {
+      display: none;
+  }
+  .hide {
+      display: none;
+  }
+  #reset {
+      display: none;
+  }
+  #newGame {
     background-color: #3b5998;
-    color: #373854;
+    border: none;
+    color: 	#f7f7f7;
+    padding: 15px 32px;
+    text-align: center;
     text-decoration: none;
-}
-.active {
-    display: block;
-    padding: 3px 8px;
-    background-color: #8b9dc3;
-    color: #373854;
-    text-decoration: none;
-}
-.main li ul {
-    display: none;
-    width: 10em;
-    background-color: #373854;
-}
-.main li a:hover {
-  background-color: #8b9dc3;
-}
+    font-size: 16px;
+    margin: 0 auto;
+  }
+  #chartContainer1 {
+    height: 300px;
+  }
+  .main {
+      margin: 0 auto;
+      padding: 0;
+      height: 1em;
+      font-family: Roboto sans-serif;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 20px;
+  }
+  .main li {
+      display: inline-block;
+      list-style: none;
+      border-left: 1px solid #f7f7f7;
+      width: 7em;
+  }
+  .main li a:not(.active) {
+      display: block;
+      padding: 3px 8px;
+      background-color: #3b5998;
+      color: #373854;
+      text-decoration: none;
+      transition: all 1s;
+  }
+  .active {
+      display: block;
+      padding: 3px 8px;
+      background-color: #8b9dc3;
+      color: white;
+      text-decoration: none;
+  }
+  .main li ul {
+      display: none;
+      width: 10em;
+      background-color: #373854;
+  }
+  .main li a:hover {
+      font-weight: bold;
+      background-color: #8b9dc3;
+  }
+  .active a:hover {
+    transition: all 1s;
+  }
