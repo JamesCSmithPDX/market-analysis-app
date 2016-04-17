@@ -32,19 +32,32 @@ for (var index = 0; index < imageArray.length; index++) {
     availablePhotos.push(imageArray[index]);
 }
 
+//event listener for form submit
+document.getElementById("user").form.addEventListener("submit", function(event){
+    event.preventDefault();
+    changeUserText(this.username.value);
+    this.username.value = "";
+    testLocal();
+});
+
+
 // Start market analysis app
 function newGameUser() {
     var btn = document.getElementById("testName");
     btn.addEventListener("click", function() {
-        userName = this.form.name.value;
+        userName = this.form.username.value;
         changeUserText(userName);
-        this.form.name.value = "";
-        if (localStorage.getItem("store") != null) {
+        this.form.username.value = "";
+        testLocal();
+      });
+}
+
+function testLocal() {
+if (localStorage.getItem("store") != null) {
             imageArray = JSON.parse(localStorage.getItem("store"))
         };
         getRandomNum();
-    });
-};
+    };
 
 newGameUser()
 
@@ -123,7 +136,7 @@ function countVote() {
         endOfGame();
     };
 };
-
+//change text after 15 clicks
 function endOfGameHTML() {
   document.getElementById('username').className = "hide";
   document.getElementById('count').className = "hide";
