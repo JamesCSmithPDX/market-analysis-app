@@ -35,7 +35,8 @@ for (var index = 0; index < imageArray.length; index++) {
 //event listener for form submit
 document.getElementById("user").form.addEventListener("submit", function(event){
     event.preventDefault();
-    changeUserText(this.username.value);
+    userName = this.username.value
+    changeUserText(userName);
     this.username.value = "";
     testLocal();
 });
